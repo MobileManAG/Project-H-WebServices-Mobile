@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2015 MobileMan GmbH
+  www.mobileman.com
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:ws="http://www.springframework.org/schema/web-services"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"  
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/web-services 
+		http://www.springframework.org/schema/web-services/web-services-1.5.xsd
+		http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Auto scan the components -->
+	<context:component-scan base-package="com.mobileman.projecth" />
+	
+	<import resource="classpath:/spring/config/BeanLocations.xml" />
+	
+	
+
+	<bean
+		class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping">
+		<description>An endpoint mapping strategy that looks for @Endpoint and
+			@PayloadRoot annotations.</description>
+	</bean>
+
+	<bean
+		class="org.springframework.ws.server.endpoint.adapter.MarshallingMethodEndpointAdapter">
+		<description>Enables the MessageDispatchServlet to invoke methods
+			requiring OXM marshalling.</description>
+		<constructor-arg ref="marshaller" />
+	</bean>
+
+	<!-- Configure XML Marshaller -->
+	<bean
+		class="org.springframework.ws.server.endpoint.adapter.GenericMarshallingMethodEndpointAdapter">
+		<constructor-arg ref="marshaller" />
+	</bean>
+
+	<bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="classesToBeBound">
+			<list>
+				<value>com.mobileman.projecth.services.ws.mobile.model.ProjectHPostRequest
+				</value>
+				<value>com.mobileman.projecth.services.ws.mobile.model.ProjectHPostInitialRequest
+				</value>
+				<value>com.mobileman.projecth.services.ws.mobile.model.ProjectHPostResponse
+				</value>
+				<value>com.mobileman.projecth.services.ws.mobile.model.ProjectHPostInitialResponse
+				</value>
+				<value>com.mobileman.projecth.services.ws.mobile.model.ObjectFactory
+				</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="patientPost"
+		class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+		<property name="schema" ref="schemaPatientPost" />
+		<property name="portTypeName" value="PatientPostPortType" />
+		<property name="locationUri" value="/patientPostService/" />
+		<property name="targetNamespace" value="http://mobileman.com/projecth/definitions" />
+	</bean>
+
+	<bean id="schemaPatientPost" class="org.springframework.xml.xsd.SimpleXsdSchema">
+		<property name="xsd" value="classpath:/xsd/projecth-patient-post.xsd" />
+	</bean>
+
+	<!-- Endpoints - autoscan
+	<bean id="service"
+		class="com.mobileman.projecth.services.ws.patient.post.impl.ProjectHPatientPostEndpoint">
+		<description>This endpoint handles requests of patient daily post.
+		</description>
+		<property name="daoPatientPost" ref="patientPostDAO" />
+	</bean>
+
+	<bean id="serviceInitial"
+		class="com.mobileman.projecth.services.ws.patient.post.impl.ProjectHPatientInitialPostEndpoint">
+		<description>This endpoint handles requests of patient initial post.
+		</description>
+		<property name="daoPatientPost" ref="patientPostDAO" />
+	</bean>
+	-->
+	<bean id="exceptionResolver"
+		class="org.springframework.ws.soap.server.endpoint.SoapFaultAnnotationExceptionResolver">
+
+	</bean>
+	
+</beans>

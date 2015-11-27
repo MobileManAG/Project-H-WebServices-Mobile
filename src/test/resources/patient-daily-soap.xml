@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2015 MobileMan GmbH
+  www.mobileman.com
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+	<soap12:Body>
+		<ProjectHPost xmlns="http://ProjectH.ch/">
+			<PatientID>6</PatientID>
+			<ActivationCode>act-4u</ActivationCode>
+			<LogDate>1287787556.500721</LogDate>
+			<HAQ1>1001;1002;1003;1004;1005;1006;1007;1008;1009;1010;1011;1012;1013;1014;1021;1022;1023;1024;1025;1026;1027;1028;1029;1030;1031;1032;1033;1034</HAQ1>
+			<HAQ1Value>0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0</HAQ1Value>
+			<HAQ2>1051;1052;1053;1054;1055;1056;1057;1058;1059;1060;1061;1062;1063;1064;1071;1072;1073;1074;1075;1076;1077;1078;1079;1080;1081;1082;1083;1084</HAQ2>
+			<HAQ2Value>0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0</HAQ2Value>
+			<HAQ3>1100</HAQ3>
+			<HAQ3Value>-1</HAQ3Value>
+			<HAQ3SUB>1102</HAQ3SUB>
+			<HAQ3SUBValue>-1</HAQ3SUBValue>
+			<HAQ4>1115</HAQ4>
+			<HAQ4Value>2</HAQ4Value>
+			<HAQ5>1127;1128;1129;1130;1131;1132;1133;1134;1135</HAQ5>
+			<HAQ5Value>-1;-1;1;-1;-1;-1;0;-1;-1</HAQ5Value>
+			<HAQ6>1136;1137</HAQ6>
+			<HAQ6Value>1;0</HAQ6Value>
+			<HAQ7>1138;1139;1140</HAQ7>
+			<HAQ7Value>3;0;1</HAQ7Value>
+		</ProjectHPost>
+	</soap12:Body>
+</soap12:Envelope>
